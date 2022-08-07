@@ -10,7 +10,7 @@ public:
         if (ret != -1) return ret;
         
         ret = 0;
-        if (idx + nums[idx] <= nums.size() -1) {
+        if (idx + nums[idx] < nums.size() -1) {
             for(int i=nums[idx];i>=1;i--) {
                 if (trav(nums, idx+i)) return ret = 1;
             }
