@@ -1,7 +1,7 @@
-int dp[101][101];
-
 class Solution {
 public:
+    int dp[101][101];
+
     int trav(int y, int x) {
         if (y == 0 && x == 0) return 1;
         
