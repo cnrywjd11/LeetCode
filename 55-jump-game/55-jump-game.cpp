@@ -15,9 +15,7 @@ public:
                 if (trav(nums, idx+i)) return ret = 1;
             }
         } else {
-            for(int i=1;i<=nums[idx];i++) {
-                if (trav(nums, idx+i)) return ret = 1;
-            }    
+            return ret = 1;
         }
         
         
