@@ -51,7 +51,5 @@ public:
                 matrix[i][0] = 0;
             }
         }
-        cout << firstRowZero << endl;
-        cout << firstColZero << endl;
     }
 };
