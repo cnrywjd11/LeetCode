@@ -5,13 +5,13 @@ public:
         bool firstColZero = false;
         for(int i=0;i<matrix.size();i++) {
             if (matrix[i][0] == 0) {
-                firstRowZero = true;
+                firstColZero = true;
                 break;
             }
         }
         for(int j=0;j<matrix[0].size();j++) {
             if (matrix[0][j] == 0) {
-                firstColZero = true;
+                firstRowZero = true;
                 break;
             }
         }
@@ -27,7 +27,7 @@ public:
 
         for(int i=1;i<matrix.size();i++) {
             if(matrix[i][0] == 0) {
-                for(int j=0;j<matrix[i].size();j++) {
+                for(int j=1;j<matrix[i].size();j++) {
                     matrix[i][j] = 0;
                 }
             }
@@ -35,7 +35,7 @@ public:
 
         for(int j=1;j<matrix[0].size();j++) {
             if(matrix[0][j] == 0) {
-                for(int i=0;i<matrix.size();i++) {
+                for(int i=1;i<matrix.size();i++) {
                     matrix[i][j] = 0;
                 }
             }
@@ -51,5 +51,7 @@ public:
                 matrix[i][0] = 0;
             }
         }
+        cout << firstRowZero << endl;
+        cout << firstColZero << endl;
     }
 };
