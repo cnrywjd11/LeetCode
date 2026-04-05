@@ -20,23 +20,16 @@ func (this *Codec) serialize(root *TreeNode) string {
     if root == nil {
         return ""
     }
-    str := streamSerialize(root)
-    return str
+    return streamSerialize(root)
 }
 
 func streamSerialize(node *TreeNode) string {
+    if node == nil {
+        return "l"
+    }
     cur := fmt.Sprint(node.Val)
-    var left, right string
-    if(node.Left == nil) {
-        left = "l"
-    } else {
-        left = streamSerialize(node.Left)
-    }
-    if(node.Right == nil) {
-        right = "l"
-    } else {
-        right = streamSerialize(node.Right)
-    }
+    left := streamSerialize(node.Left)
+    right := streamSerialize(node.Right)
     return fmt.Sprintf("%s,%s,%s", cur, left, right)
 }
 
@@ -47,15 +40,10 @@ func (this *Codec) deserialize(data string) *TreeNode {
     }
     splitSlice := strings.Split(data, ",")
     var idx int
-    root := streamDeserialize(splitSlice, &idx)
-    return root
+    return streamDeserialize(splitSlice, &idx)
 }
 
 func streamDeserialize(slice []string, idx *int) (*TreeNode) {
-    if len(slice[*idx:]) == 1 {
-        *idx = *idx + 1
-        return nil
-    }
     strVal := slice[*idx]
     if strVal == "l" {
         *idx = *idx + 1
@@ -67,12 +55,8 @@ func streamDeserialize(slice []string, idx *int) (*TreeNode) {
     }
     *idx = *idx + 1
     
-    left := streamDeserialize(slice, idx)
-    node.Left = left
-
-    right := streamDeserialize(slice, idx)
-    node.Right = right
-
+    node.Left = streamDeserialize(slice, idx)
+    node.Right = streamDeserialize(slice, idx)
     return node
 }
 
