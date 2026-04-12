@@ -1,33 +1,35 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
-        string longestStr="";
+        int ml=0, mr = 0;
         for(int i=0;i<s.size();i++) {
-            string tmpLongestStr = longestPalindromeWithIdx(s, i, i);
-            if(longestStr.size() < tmpLongestStr.size()) {
-                longestStr = tmpLongestStr;
+            int rl=0, rr=0;
+            longestPalindromeWithIdx(s, i, i, &rl, &rr);
+            if(mr-ml < rr-rl) {
+                ml = rl;
+                mr = rr;
             }
         }
         for(int i=0;i<s.size()-1;i++) {
-            string tmpLongestStr = longestPalindromeWithIdx(s, i, i+1);
-            if(longestStr.size() < tmpLongestStr.size()) {
-                longestStr = tmpLongestStr;
+            int rl=0, rr=0;
+            longestPalindromeWithIdx(s, i, i+1, &rl, &rr);
+            if(mr-ml < rr-rl) {
+                ml = rl;
+                mr = rr;
             }
         }
-        return longestStr;
+        return s.substr(ml, mr-ml+1);
     }
 
-    string longestPalindromeWithIdx(string s, int l, int r) {
-        string longestStr="";
+    void longestPalindromeWithIdx(string s, int l, int r, int* rl, int* rr) {
         do {
             if(s[l] == s[r]) {
-                longestStr = s.substr(l, r-l+1);
+                *rl = l, *rr = r;
                 l--;
                 r++;
             } else {
                 break;
             }
         } while(0<=l && r<s.size());
-        return longestStr;
     }
 };
