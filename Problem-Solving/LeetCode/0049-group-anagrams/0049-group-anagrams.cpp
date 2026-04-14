@@ -11,8 +11,8 @@ public:
             m[keys[i]].push_back(strs[i]);
         }
         vector<vector<string>> ret;
-        for(auto it=m.begin();it!=m.end();it++) {
-            ret.push_back(it->second);
+        for(auto it : m) {
+            ret.push_back(it.second);
         }
         return ret;
     }
