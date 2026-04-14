@@ -5,7 +5,7 @@ public:
         for(int i=0;i<keys.size();i++) {
             sort(keys[i].begin(), keys[i].end());
         }
-        map<string, vector<string>> m;
+        unordered_map<string, vector<string>> m;
         for(int i=0;i<keys.size();i++) {
             auto it = m.find(keys[i]);
             m[keys[i]].push_back(strs[i]);
